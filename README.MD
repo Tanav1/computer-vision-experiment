@@ -1,7 +1,7 @@
 # Evaluating CNN Architectures for Noisy Sign Language Recognition  
 
 ## Overview  
-This project explores the robustness of different Convolutional Neural Network (CNN) architectures when handling noisy and transformed sign language images. We tested several custom CNN architectures on a dataset of American Sign Language (ASL) images and evaluated their performance under different transformations, including skew (affine), center rotation, and random noise.
+This project explores the robustness of different Convolutional Neural Network (CNN) architectures in handling noisy and transformed sign language images. Several custom CNN architectures were tested on a dataset of American Sign Language (ASL) images to evaluate their performance under various augmentations that simulate real-world data corruption. The study examines how models degrade when tested on altered data and whether training with augmented data improves robustness.
 
 ## Dataset  
 - **Source:** [Kaggle: Sign Language Detection Using Images](https://www.kaggle.com/datasets/harshvardhan21/sign-language-detection-using-images)  
@@ -9,12 +9,17 @@ This project explores the robustness of different Convolutional Neural Network (
 - **Labels:** 35 classes (A-Z and 1-9)  
 - **Resolution:** 128x128x3 (RGB)  
 
-## Research Question  
-- How do different CNN architectures handle noise, lighting variations, and background transformations in real-world conditions?  
-- How does performance degrade as data transformations increase in intensity?  
+## Objective  
+Computer vision models frequently encounter real-world challenges such as lighting variations, occlusions, motion blur, and background noise. This study evaluates how different CNN architectures handle these distortions by introducing controlled augmentations into the dataset and comparing performance against a clean baseline. Three transformation categories were selected to simulate corrupted data:  
+
+1. **Affine Transformations (Skewing)** – Represents variations in camera angles, imperfect hand positioning, and perspective distortion.  
+2. **Center Rotations** – Mimics misalignment caused by signer movement or camera shifts.  
+3. **Random Noise Injection** – Simulates environmental noise such as shadows, low lighting, or minor occlusions.  
+
+Multiple test sets were generated with increasing levels of distortion for each transformation category. Models were trained on clean images and evaluated on both clean and transformed test sets. A secondary evaluation measured whether training with augmented data improved resilience to distortions compared to models trained only on clean data.
 
 ## Model Architectures  
-Architectures found in models folder:  
+Four CNN architectures were designed and tested:
 
 1. **Small Architecture (Model A)**  
    - Single convolutional layer  
@@ -50,24 +55,24 @@ Architectures found in models folder:
 1. Train all models on the original dataset.  
 2. Evaluate on both the clean test set and the transformed test sets.  
 3. Measure accuracy degradation across transformations.  
+4. Compare performance between models trained only on clean data vs. models trained with augmented data.  
 
 ## Results  
 - **Baseline vs. Augmented Data Training:**  
-  - Models generally improved with exposure to augmented data.  
-  - Slower accuracy degradation when trained on noisy data.  
+  - Models trained with augmented data exhibited greater robustness, showing a slower decline in performance.  
 
 - **Impact of Transformations:**  
-  - Affine and center rotation transformations degraded performance the most.  
-  - Models were more robust to random noise, which better mimics real-world lighting variations.  
+  - Affine transformations and center rotations resulted in the highest performance degradation.  
+  - Models were more resistant to random noise compared to spatial distortions.  
 
 - **Model Performance:**  
-  - **Model B (Deep Architecture)** performed best overall, showing resilience to all transformations.  
-  - **Model D (Narrowing Architecture)** did not improve over the baseline.  
-  - **Model C (Wide Architecture)** was effective against noise but less so against skew and rotation.  
+  - **Model B (Deep Architecture)** demonstrated the best overall resilience across all test conditions.  
+  - **Model D (Narrowing Architecture)** showed no improvement over the baseline.  
+  - **Model C (Wide Architecture)** maintained accuracy against random noise but performed poorly under skew and rotation.  
 
 ## Conclusion  
-- CNNs remain a strong choice for Sign Language Recognition (SLR), but robustness varies by architecture.  
-- Real-world applications require hybrid models that can handle multimodal input and environmental variations.  
-- Future work includes incorporating real-time video recognition and expanding datasets to improve model generalization.  
-
+- CNNs exhibit varying degrees of robustness when subjected to real-world distortions.  
+- Deeper architectures provide more stable performance compared to shallower or narrower models.  
+- Training with augmented data significantly reduces accuracy degradation.  
+- Real-world applications of sign language recognition require hybrid models capable of handling multimodal input and dynamic environments.  
 
