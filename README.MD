@@ -14,7 +14,7 @@ This project explores the robustness of different Convolutional Neural Network (
 - How does performance degrade as data transformations increase in intensity?  
 
 ## Model Architectures  
-We designed and tested four CNN architectures:  
+Architectures found in models folder:  
 
 1. **Small Architecture (Model A)**  
    - Single convolutional layer  
