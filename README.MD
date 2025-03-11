@@ -70,10 +70,4 @@ Architectures found in models folder:
 - Real-world applications require hybrid models that can handle multimodal input and environmental variations.  
 - Future work includes incorporating real-time video recognition and expanding datasets to improve model generalization.  
 
-## References  
-- [Sign Language Detection Using Images (Kaggle)](https://www.kaggle.com/datasets/harshvardhan21/sign-language-detection-using-images)  
-- Research papers on deep learning-based sign language recognition systems.  
-
-## Repository  
-- **GitHub:** [Project Repository](https://github.com/numbersrcool/207_final/tree/main)  
 
